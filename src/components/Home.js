@@ -16,7 +16,7 @@ export default class Home extends Component {
 
 constructor(props){
   super();
-  this.state={secList:[]};
+  this.state={secList:[],searchText:''};
 
 
 
@@ -219,11 +219,62 @@ this.createDatabase()
    
   }
 
+ShowAll = (event) => {
+   this.setState({searchText:''});
+    this.queryContainer();
+  }
+  SaveSearchtext  = (event) => {
+      debugger;
+   this.setState({searchText:event.target.value})
+  }
+searchData= () => {
+      debugger;
+      var event=this.state.searchText;
+    let searchData=  this.state.secList.filter(obj=>
+     obj.id.indexOf(event)>-1 ||
+     obj.Country.indexOf(event)>-1 ||
+     obj.ISIN.indexOf(event)>-1 ||
+     obj.VALOR.indexOf(event)>-1 ||
+     obj.CUSIP.indexOf(event)>-1 ||
+     obj.DESCRIPTION.indexOf(event)>-1 ||
+     obj.SETLLEMENTSTYLE.indexOf(event)>-1 ||
+     obj.TYPEODSECURITY.indexOf(event)>-1 ||
+     obj.ISSUEDATE.indexOf(event)>-1 ||
+     obj.MATURITYDATE.indexOf(event)>-1
+    );
+
+    this.setState({secList:searchData});
+  }
+
   render() {
     return (
       <div>
-        <h1>Sanction Securities</h1>
+        <h3>Sanction Securities</h3>
 
+
+
+
+
+{!this.state.secList.length>0?<div> Loading....</div>:
+
+<div>
+<p>
+  <input
+        type='text'
+        value ={this.state.searchText}
+        onChange={this.SaveSearchtext}
+      />
+      <input
+        value="Search"
+        type='button'
+        onClick={()=>this.searchData()}
+      />
+       <input
+        value="Show All"
+        type='button'
+        onClick={()=>this.ShowAll()}
+      />
+      </p>
          <table className='table'>
         <thead>
           <tr>
@@ -240,6 +291,7 @@ this.createDatabase()
             <th>MATURITYDATE</th>
             <th>Delete</th>
             <th>Edit</th>
+          
                 </tr>
         </thead>
         <tbody>
@@ -256,6 +308,7 @@ this.createDatabase()
               <td>{item.TYPEODSECURITY}</td>
                <td>{item.ISSUEDATE}</td>
               <td>{item.MATURITYDATE}</td>
+                
                  <td> <input
         value="Delete"
         type='button'
@@ -266,11 +319,14 @@ this.createDatabase()
         type='button'
         onClick={()=>this.gotoEdit(item.id)}
       /></td>
+                 
                 
             </tr>
            )}
         </tbody>
       </table>
+      </div>
+}
           </div>
     );
   }

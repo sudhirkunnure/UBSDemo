@@ -219,7 +219,7 @@ this.replaceFamilyItem( { id: authorizeObject.id,
     return (
       <div>
         <h1>Authorize Sanction Securities</h1>
-
+{!this.state.secList.length>0?<div> Loading....</div>:
          <table className='table'>
         <thead>
           <tr>
@@ -269,6 +269,7 @@ this.replaceFamilyItem( { id: authorizeObject.id,
            )}
         </tbody>
       </table>
+}
           </div>
     );
   }

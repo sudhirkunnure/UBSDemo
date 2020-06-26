@@ -9,18 +9,20 @@ export class NavMenu extends Component {
 
   render() {
     return (
-      <Navbar inverse fixedTop fluid collapseOnSelect>
-        <Navbar.Header>
+
+      <Navbar inverse fixedTop fluid collapseOnSelect style={{
+    'top': '100px'}}>
+       {/*  <Navbar.Header>
           <Navbar.Brand>
             <Link to={'/'}>UBS Sanctions</Link>
           </Navbar.Brand>
           <Navbar.Toggle />
-        </Navbar.Header>
+        </Navbar.Header>*/}
         <Navbar.Collapse>
           <Nav>
             <LinkContainer to={'/'} exact>
               <NavItem>
-                <Glyphicon glyph='home' /> Fetch data from cosmos DB
+                <Glyphicon glyph='home' /> View Sactions
               </NavItem>
             </LinkContainer>
           
@@ -46,11 +48,7 @@ export class NavMenu extends Component {
             </LinkContainer>
 
                  
-            <LinkContainer to={'/search'}>
-              <NavItem>
-                <Glyphicon glyph='th-list' /> Search 
-              </NavItem>
-            </LinkContainer>
+           
              <LinkContainer to={'/audit'}>
               <NavItem>
                 <Glyphicon glyph='th-list' /> Audit 
@@ -60,6 +58,7 @@ export class NavMenu extends Component {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
+ 
     );
   }
 }

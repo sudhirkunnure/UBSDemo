@@ -7,8 +7,12 @@ export class Layout extends Component {
 
   render() {
     return (
+<div>
+
+<h1>UBS Sanctions</h1>
+<hr></hr>
       <Grid fluid>
-        <Row>
+          <Row>
           <Col sm={3}>
             <NavMenu />
           </Col>
@@ -17,6 +21,7 @@ export class Layout extends Component {
           </Col>
         </Row>
       </Grid>
+  </div>
     );
   }
 }
